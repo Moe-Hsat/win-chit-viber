@@ -2,15 +2,73 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Win & Chit - Contact Us</title>
+    <style>
+        body {
+            background-color: #0d1b1a;
+            color: #f1c40f;
+            font-family: sans-serif;
+            text-align: center;
+            padding: 30px;
+            margin: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #f1c40f;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(241, 196, 15, 0.4);
+        }
+        h2 {
+            color: #f1c40f;
+            margin-bottom: 5px;
+        }
+        p {
+            color: #bdc3c7;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 12px 0;
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: opacity 0.2s;
+        }
+        .btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+        }
+        .telegram { background: #0088cc; }
+        .viber { background: #7360f2; }
+        .messenger { background: #0084ff; }
+        
+        /* ပထမအစမှာ ခလုတ်တွေကို ဝှက်ထားမည်၊ Auto မသွားမှ ပေါ်လာမည် */
+        #manual-section {
+            display: none;
+        }
+    </style>
     <script>
         window.onload = function() {
-            // ၁။ ပထမဆုံး Telegram ကို ချိတ်ပါမည်
             var telegramUrl = "http://t.me/WinandChit";
-            // ၂။ Telegram မရှိလျှင် Viber သို့ သွားပါမည်
             var viberUrl = "viber://chat?number=%2B959255852069";
-            // ၃။ Telegram ရော Viber ရော မရှိလျှင် Facebook Messenger သို့ သွားပါမည်
-            var facebookUrl = "https://m.me/705721029287586"; 
 
             var start = new Date().getTime();
             window.location.href = telegramUrl;
@@ -27,11 +85,12 @@
                 var viberStart = new Date().getTime();
                 window.location.href = viberUrl;
 
-                // Viber ပါ မရှိလျှင် Facebook Messenger သို့ ဆက်သွားရန်
+                // Viber ပါ မရှိလျှင် (Auto မသွားနိုင်တော့မှ) အောက်ပါ ခလုတ်များပါသော စာမျက်နှာကို ပြရန်
                 setTimeout(function() {
                     var viberNow = new Date().getTime();
                     if (viberNow - viberStart < 400) {
-                        window.location.href = facebookUrl;
+                        document.getElementById('loading-section').style.display = 'none';
+                        document.getElementById('manual-section').style.display = 'block';
                     }
                 }, 1000);
             }
@@ -39,14 +98,29 @@
     </script>
 </head>
 <body>
-    <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
-        <h2>Win & Chit ဆက်သွယ်ရန်...</h2>
-        <p>ခဏစောင့်ပါ၊ ချိတ်ဆက်ပေးနေပါပြီ။</p>
-        <br>
-        <!-- အကယ်၍ Auto မသွားပါက လူကိုယ်တိုင် နှိပ်နိုင်သော ခလုတ်များ -->
-        <a href="http://t.me/WinandChit" style="display: block; width: 250px; margin: 10px auto; padding: 12px; background: #0088cc; color: white; text-decoration: none; border-radius: 5px;">Telegram သို့ ဝင်ရန်</a>
-        <a href="viber://chat?number=%2B959255852069" style="display: block; width: 250px; margin: 10px auto; padding: 12px; background: #7360f2; color: white; text-decoration: none; border-radius: 5px;">Viber သို့ ဝင်ရန်</a>
-        <a href="https://m.me/705721029287586" style="display: block; width: 250px; margin: 10px auto; padding: 12px; background: #0084ff; color: white; text-decoration: none; border-radius: 5px;">Messenger သို့ ဝင်ရန်</a>
+    <div class="container">
+        <!-- ပထမအစ Loading အပိုင်း -->
+        <div id="loading-section" style="margin-top: 80px;">
+            <h2>Win & Chit</h2>
+            <p>ချိတ်ဆက်ပေးနေပါပြီ ခဏစောင့်ပါ...</p>
+        </div>
+
+        <!-- ဒုတိယအဆင့် - အက်ပ်မရှိမှပေါ်မည့် Logo နှင့် ခလုတ်များပါသော စာမျက်နှာ -->
+        <div id="manual-section">
+            <img src="logo.jpg" alt="Win & Chit Logo" class="logo">
+            <h2>Win & Chit Online Shop</h2>
+            <p>အောက်ပါတို့မှ အဆင်ပြေရာကို ရွေးချယ် ဆက်သွယ်နိုင်ပါသည်</p>
+            
+            <a href="http://t.me/WinandChit" class="btn telegram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"> Telegram သို့ ဝင်ရန်
+            </a>
+            <a href="viber://chat?number=%2B959255852069" class="btn viber">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Viber_logo_%282018%2C_violet%29.svg" alt="Viber"> Viber သို့ ဝင်ရန်
+            </a>
+            <a href="https://m.me/705721029287586" class="btn messenger">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" alt="Messenger"> Messenger သို့ ဝင်ရန်
+            </a>
+        </div>
     </div>
 </body>
 </html>
