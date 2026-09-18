@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Win & Chit - Contact Us</title>
+    <script>
+        window.onload = function() {
+            // ၁။ ပထမဆုံး Telegram ကို ချိတ်ပါမည်
+            var telegramUrl = "http://t.me/WinandChit";
+            // ၂။ Telegram မရှိလျှင် Viber သို့ သွားပါမည်
+            var viberUrl = "viber://chat?number=%2B959255852069";
+            // ၃။ Telegram ရော Viber ရော မရှိလျှင် Facebook Messenger သို့ သွားပါမည်
+            var facebookUrl = "https://m.me/705721029287586"; 
+
+            var start = new Date().getTime();
+            window.location.href = telegramUrl;
+
+            // Telegram App မရှိ၍ ကြန့်ကြာသွားပါက Viber သို့ ပြောင်းရန်
+            setTimeout(function() {
+                var now = new Date().getTime();
+                if (now - start < 400) {
+                    tryViber();
+                }
+            }, 1000);
+
+            function tryViber() {
+                var viberStart = new Date().getTime();
+                window.location.href = viberUrl;
+
+                // Viber ပါ မရှိလျှင် Facebook Messenger သို့ ဆက်သွားရန်
+                setTimeout(function() {
+                    var viberNow = new Date().getTime();
+                    if (viberNow - viberStart < 400) {
+                        window.location.href = facebookUrl;
+                    }
+                }, 1000);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+        <h2>Win & Chit ဆက်သွယ်ရန်...</h2>
+        <p>ခဏစောင့်ပါ၊ ချိတ်ဆက်ပေးနေပါပြီ။</p>
+        <br>
+        <!-- အကယ်၍ Auto မသွားပါက လူကိုယ်တိုင် နှိပ်နိုင်သော ခလုတ်များ -->
+        <a href="http://t.me/WinandChit" style="display: block; width: 250px; margin: 10px auto; padding: 12px; background: #0088cc; color: white; text-decoration: none; border-radius: 5px;">Telegram သို့ ဝင်ရန်</a>
+        <a href="viber://chat?number=%2B959255852069" style="display: block; width: 250px; margin: 10px auto; padding: 12px; background: #7360f2; color: white; text-decoration: none; border-radius: 5px;">Viber သို့ ဝင်ရန်</a>
+        <a href="https://m.me/705721029287586" style="display: block; width: 250px; margin: 10px auto; padding: 12px; background: #0084ff; color: white; text-decoration: none; border-radius: 5px;">Messenger သို့ ဝင်ရန်</a>
+    </div>
+</body>
+</html>
